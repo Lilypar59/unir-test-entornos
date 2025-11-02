@@ -106,3 +106,12 @@ pip install selenium webdriver-manager
 - python -m pytest -m unit --junitxml=reports/unit-results.xml -v
 - python -m pytest -m api --junitxml=reports/api-results.xml -v
 
+## Utilizar make
+
+- ingresar a
+  - source venv/bin/activate
+- ejecutar:
+  - make run-web
+  - make unit
+  - make api
+  - make test    ** ejecuta y muestra los reportes **
