@@ -40,8 +40,20 @@
         <div>
           <button id="button-add" v-on:click="add()">+</button>
           <button id="button-substract" v-on:click="substract()">-</button>
+          <!-- nuevas funcionalidades -->
           <button id="button-multiply" v-on:click="multiply()">*</button>
           <button id="button-divide" v-on:click="divide()">/</button>
+          <button @click="power()">xʸ</button>
+          <button @click="mod()">mod</button>
+          <button @click="sqrt()">√x</button>
+          <button @click="log10()">log₁₀</button>
+          <button @click="abs_value()">|x|</button>
+          <button @click="avg()">avg</button>
+          <button @click="maxValue()">max</button>
+          <button @click="minValue()">min</button>
+          <button @click="factorial()">x!</button>
+          <button @click="percent()">%</button>
+          <button @click="inverse()">1/x</button>
         </div>
         <div id="result-area">Result: {{ result  }}</div>
         <div>
@@ -75,21 +87,32 @@
           divide: function() {
             this.apiCall('divide', this.op1, this.op2);
           },
-          apiCall: function(func, op1, op2) {
-            var url = `${baseUrl}/calc/${func}/${op1}/${op2}`;
+          power() { this.apiCall('power', this.op1, this.op2); },
+          mod() { this.apiCall('mod', this.op1, this.op2); },
+          sqrt() { this.apiCall('sqrt', this.op1); },
+          log10() { this.apiCall('log10', this.op1); },
+          absValue() { this.apiCall('abs_value', this.op1); },
+          avg() { this.apiCall('avg', this.op1); },
+          maxValue() { this.apiCall('max_value', this.op1); },
+          minValue() { this.apiCall('min_value', this.op1); },
+          factorial() { this.apiCall('factorial', this.op1); },
+          percent() { this.apiCall('percent', this.op1, this.op2); },
+          inverse() { this.apiCall('inverse', this.op1); },
+
+          apiCall: function(func, ...params) {
+            
+            const path = params.filter(p => p !== undefined && p !== "").join("/");
+            const url = `${baseUrl}/calc/${func}/${path}`;
             axios
-              .get(url)
-              .then(response => {
-                var entry = `GET ${url} (${response.statusText})`;
-                if (!!response.data) {
-                  entry = entry + ": " + response.data;
-                }
-                this.outputLog.push(entry);
-                this.result = response.data;
-              })
-              .catch(e => {
-                this.outputLog.push(e);
-              });
+            .get(url)
+            .then(response => {
+              var entry = `GET ${url} (${response.statusText}): ${response.data}`;
+              this.outputLog.push(entry);
+              this.result = response.data;
+            })
+            .catch(e => {
+              this.outputLog.push(e.message || e.toString());
+            });
           }
         }
       });

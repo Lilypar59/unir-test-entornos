@@ -127,3 +127,38 @@ jmeter-load:
 	docker run --rm --network calc-test-jmeter --volume `pwd`:/opt/jmeter -w /opt/jmeter calculator-jmeter jmeter -n -t test/jmeter/jmeter-plan.jmx -l results/jmeter_results.csv -e -o results/jmeter/
 	docker stop apiserver || true
 	docker network rm calc-test-zap || true
+
+# mis cambios nuevos *******************************************
+
+# Carpeta donde se guardan los reportes
+REPORT_DIR = reports
+
+# Asegura que exista la carpeta de reportes
+reports:
+	@mkdir -p $(REPORT_DIR)
+
+# Ejecutar pruebas unitarias
+unit: reports
+	@echo "Ejecutando pruebas unitarias..."
+	pytest -m unit --junitxml=$(REPORT_DIR)/unit-results.xml -v
+	@echo "Reporte generado en $(REPORT_DIR)/unit-results.xml"
+
+# Ejecutar pruebas de API
+api: reports
+# 	@echo "Ejecutando pruebas de API..."
+# 	pytest -m api --junitxml=$(REPORT_DIR)/api-results.xml -v
+# 	@echo "Reporte generado en $(REPORT_DIR)/api-results.xml"
+	@echo "Iniciando contenedor Flask para pruebas..."
+	@$(MAKE) run & echo $$! > flask.pid
+	@sleep 3
+	@echo "Ejecutando pruebas de API..."
+	pytest -m api --junitxml=reports/api-results.xml -v
+	@echo "Deteniendo contenedor Flask..."
+	@kill $$(cat flask.pid) || true
+	rm -f flask.pid
+	@echo "Reporte generado en reports/api-results.xml"
+
+# Ejecutar todas las pruebas (unitarias + API)
+test: unit api
+	@echo "Todas las pruebas ejecutadas con éxito."
+	@echo "Reportes disponibles en la carpeta $(REPORT_DIR)"
