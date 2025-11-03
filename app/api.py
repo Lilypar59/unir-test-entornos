@@ -12,7 +12,7 @@ HEADERS = {"Content-Type": "text/plain", "Access-Control-Allow-Origin": "*"}
 
 @api_application.route("/")
 def hello():
-    return "Hello from The Calculator!\n"
+    return "Hola esta es una calculadora\n"
 
 
 @api_application.route("/calc/add/<op_1>/<op_2>", methods=["GET"])
@@ -85,9 +85,10 @@ def log10(op_1):
 @api_application.route('/calc/abs_value/<op_1>', methods=["GET"])
 def abs_value(op_1):
     try:
-        num_1= util.convert_to_number(op_1)
-        return ("{}".format(Calculator().absValue(num_1)), http.client.OK, HEADERS)
-    except TypeError as e:
+        num_1 = util.convert_to_number(op_1)
+        result = abs(num_1)
+        return (f"{result}", http.client.OK, HEADERS)
+    except Exception as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)
     
 @api_application.route('/calc/avg/<numbers>', methods=["GET"])
@@ -125,10 +126,16 @@ def factorial(op_1):
 @api_application.route('/calc/percent/<op_1>/<op_2>', methods=["GET"])
 def percent(op_1, op_2):
     try:
-        num_1, num_2 = util.convert_to_number(op_1), util.convert_to_number(op_2)
-        return ("{}".format(Calculator().percent(num_1, num_2)), http.client.OK, HEADERS)
-    except TypeError as e:
+        num_1 = util.convert_to_number(op_1)
+        num_2 = util.convert_to_number(op_2)
+        if num_2 == 0:
+            return ("No se puede dividir por cero", http.client.BAD_REQUEST, HEADERS)     
+        result = (num_1 / num_2) * 100
+        return (f"{result}", http.client.OK, HEADERS)
+
+    except Exception as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)
+
     
 @api_application.route('/calc/inverse/<op_1>', methods=["GET"])
 def inverse(op_1):

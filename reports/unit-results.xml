@@ -1,1 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="8" time="1.222" timestamp="2025-11-02T15:36:31.587642" hostname="DESKTOP-J7D6NSB"><testcase classname="test.unit.calc_test.TestCalculate" name="test_add_method_fails_with_nan_parameter" time="0.009" /><testcase classname="test.unit.calc_test.TestCalculate" name="test_add_method_returns_correct_result" time="0.000" /><testcase classname="test.unit.calc_test.TestCalculate" name="test_divide_method_fails_with_division_by_zero" time="0.000" /><testcase classname="test.unit.calc_test.TestCalculate" name="test_divide_method_fails_with_nan_parameter" time="0.001" /><testcase classname="test.unit.calc_test.TestCalculate" name="test_divide_method_returns_correct_result" time="0.001" /><testcase classname="test.unit.calc_test.TestCalculate" name="test_multiply_method_returns_correct_result" time="0.001" /><testcase classname="test.unit.util_test.TestUtil" name="test_convert_to_number_correct_param" time="0.001" /><testcase classname="test.unit.util_test.TestUtil" name="test_convert_to_number_invalid_type" time="0.000" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites>
+<testsuite name="pytest" errors="0" failures="0" skipped="0" tests="31" time="0.689" timestamp="2025-11-02T17:57:56.486822" 
+hostname="DESKTOP-J7D6NSB"><testcase classname="test.unit.test_calc" name="test_add_success" time="0.009" />
+<testcase classname="test.unit.test_calc" name="test_add_type_error" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_substract_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_substract_type_error" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_multiply_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_multiply_type_error" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_divide_success" time="0.001" />
+<testcase classname="test.unit.test_calc" name="test_divide_zero_error" time="0.001" />
+<testcase classname="test.unit.test_calc" name="test_power_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_power_type_error" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_sqrt_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_sqrt_negative_error" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_log10_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_log10_invalid" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_mod_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_mod_zero" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_abs_value_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_abs_value_invalid" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_avg_value_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_avg_value_invalid" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_max_min_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_max_min_invalid" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_percent_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_percent_invalid" time="0.001" />
+<testcase classname="test.unit.test_calc" name="test_percent_invalid2" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_percent_invalid3" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_percent_invalid4" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_factorial_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_factorial_invalid" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_inverse_success" time="0.000" />
+<testcase classname="test.unit.test_calc" name="test_inverse_zero" time="0.001" />
+</testsuite>
+</testsuites>

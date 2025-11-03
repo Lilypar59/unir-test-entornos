@@ -145,9 +145,6 @@ unit: reports
 
 # Ejecutar pruebas de API
 api: reports
-# 	@echo "Ejecutando pruebas de API..."
-# 	pytest -m api --junitxml=$(REPORT_DIR)/api-results.xml -v
-# 	@echo "Reporte generado en $(REPORT_DIR)/api-results.xml"
 	@echo "Iniciando contenedor Flask para pruebas..."
 	@$(MAKE) run & echo $$! > flask.pid
 	@sleep 3
